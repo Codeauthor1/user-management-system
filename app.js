@@ -1,20 +1,24 @@
 const express = require("express"),
-    authRoute = require("./routes/auth"),
     cors = require("cors"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    authRoute = require("./routes/auth");
 
 require("dotenv").config();
 
 const app = express();
-app.set('view engine', "ejs")
-app.use("/user", authRoute);
-app.use(cors())
+
 app.use(express.json())
+app.use(cors())
+app.set('view engine', "ejs")
 
+app.use("/api/user", authRoute);
 
-mongoose.connect(
-    process.env.DB,
-    { useNewUrlParser: true },
-    () => console.log("connected to database successfully"))
-
+try {
+    mongoose.connect(
+        process.env.DB,
+        { useNewUrlParser: true },
+        () => console.log("connected to database successfully"))
+} catch (err) {
+    console.log(err);
+}
 app.listen(process.env.PORT, () => console.log(`server is running at port ${process.env.PORT}`))
