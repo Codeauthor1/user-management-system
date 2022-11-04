@@ -1,5 +1,11 @@
 const nodemailer = require("nodemailer");
-
+/**
+ *SEND EMAIL
+ * @function sendEmail() -> A FUNCTION TO SEND EMAIL
+ * @param {*} email -> USER'S EMAIL
+ * @param {*} subject -> SUBJECT OF THE EMAIL TO BE SENT
+ * @param {*} html -> BODY OF EMAIL
+ */
 const sendEmail = async function (email, subject, html) {
     const transporter = nodemailer.createTransport({
         host: process.env.HOST,
@@ -18,6 +24,7 @@ const sendEmail = async function (email, subject, html) {
         subject: subject,
         html: html
     })
+
 }
 
 module.exports = {

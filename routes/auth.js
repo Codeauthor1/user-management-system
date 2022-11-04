@@ -1,11 +1,13 @@
 const express = require("express"),
-    authController = require("../controller/authController");
+    authController = require("../controller/authController"),
+    verifyEmail = require("../controller/emailController");
 
 const router = express.Router();
+// RENDERS UI FOR USER REGISTRATION
+router.get("/register", (req, res) => res.render('register'));
+// RESPOND TO USER REQUEST
+router.post("/register", authController.register);
+// VERIFY USER EMAIL
+router.get("/:id/verify/:token", verifyEmail.emailVerify);
 
-router.get("/register", (req, res) => res.render('register'))
-
-router.post("/register", authController.register)
-router.get("/:id/verify/tpken", authController.register)
-
-module.exports = router
+module.exports = router;

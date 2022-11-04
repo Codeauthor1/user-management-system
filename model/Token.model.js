@@ -1,6 +1,9 @@
 const mongoose = require("mongoose"),
     Schema = mongoose.Schema;
-
+/** 
+ * TOKEN SCHEMA
+ * @type {*} SCHEMA
+ * */
 const tokenSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
@@ -17,6 +20,7 @@ const tokenSchema = new Schema({
         default: Date.now(),
         expires: 3600 //1 HOUR
     }
+
 });
 
 module.exports = mongoose.model("Token", tokenSchema);
